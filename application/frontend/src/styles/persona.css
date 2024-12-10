@@ -1,0 +1,13 @@
+.prompt {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    font-size: 1rem;
+    height: 250px;
+    padding: 5px;
+    resize: none;
+}
+
+.personas-container {
+    margin-left: 1px;
+    padding: 5px;
+    max-width: 90%;
+}

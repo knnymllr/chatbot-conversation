@@ -19,6 +19,7 @@ class LoginView(generics.GenericAPIView):
                 {
                     'accessToken': access_token,
                     'refreshToken': refresh_token,
+                    'userId': user.id,
                     'username': user.username
                 },
                 status=status.HTTP_200_OK)
@@ -42,8 +43,8 @@ class LoginView(generics.GenericAPIView):
 
 
 class PersonaViewSet(viewsets.ModelViewSet):
-    queryset = Persona.objects.all()
-    serializer_class = PersonaSerializer
+    queryset = Persona.objects
+    serializer_class = PersonaSerializer      
 
     def get_queryset(self):
         queryset = self.queryset
@@ -57,7 +58,7 @@ class PersonaViewSet(viewsets.ModelViewSet):
 
 
 class PatternViewSet(viewsets.ModelViewSet):
-    queryset = Pattern.objects.all()
+    queryset = Pattern.objects
     serializer_class = PatternSerializer
 
     def get_queryset(self):
@@ -75,7 +76,7 @@ class PatternViewSet(viewsets.ModelViewSet):
 
 
 class ConversationViewSet(viewsets.ModelViewSet):
-    queryset = Conversation.objects.all()
+    queryset = Conversation.objects
     serializer_class = ConversationSerializer
 
     def get_queryset(self):

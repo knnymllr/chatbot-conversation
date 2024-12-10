@@ -13,6 +13,8 @@ services:
     image: postgres
     environment:
       POSTGRES_PASSWORD: mypassword
+    volumes:
+        - ./data:/var/lib/postgresql/data
   web:
     build:
       context: ./frontend

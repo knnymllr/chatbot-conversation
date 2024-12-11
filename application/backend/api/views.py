@@ -11,12 +11,7 @@ import openai
 openai_api_key = ""
 openai.api_key = openai_api_key
 
-# PREV_RESPONSE = ""
-# SYSTEM_PROMPT_SENT = False
-
 #! ¢¢ FOR CHEAP TESTING ¢¢
-
-
 def ask_davinci(message):
     response = openai.completions.create(
         model='davinci-002',

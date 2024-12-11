@@ -14,10 +14,10 @@ class Pattern(models.Model):
     
 class Conversation(models.Model):
     name = models.CharField(max_length=20, default="")
-    initiator = models.IntegerField()
     contributors = models.ManyToManyField(Persona, related_name='contributors')
     pattern = models.ForeignKey(Pattern, on_delete=models.DO_NOTHING)
-    notes = models.TextField()
+    topic = models.TextField(default="")
+    notes = models.TextField(default="")
 
 class Message(models.Model):
     conversation = models.ForeignKey(Conversation, on_delete=models.CASCADE)

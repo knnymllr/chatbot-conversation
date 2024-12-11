@@ -6,24 +6,23 @@ export default function Conversation() {
           className="conversation-details-container"
         >
           <div className="form-field">
-            <label for="persona1">Persona 1:</label>
+            <label htmlFor="persona1">Persona 1:</label>
             <p id="persona1"></p>
           </div>
           <div className="form-field">
-            <label for="persona2">Persona 2:</label>
+            <label htmlFor="persona2">Persona 2:</label>
             <p id="persona2"></p>
           </div>
           <div className="form-field">
-            <label for="pattern">Pattern:</label>
+            <label htmlFor="pattern">Pattern:</label>
             <p id="pattern"></p>
           </div>
           <div className="form-field">
-            <label for="topic">Topic:</label>
+            <label htmlFor="topic">Topic:</label>
             <p name="topic" className="topic" id="topic"></p>
           </div>
         </div>
         <div className="conversation-container">
-          <label>Conversation:</label>
           <div className="conversation"></div>
         </div>
       </div>

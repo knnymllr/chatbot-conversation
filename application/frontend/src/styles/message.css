@@ -1,0 +1,27 @@
+.li-msg {
+ display: flex;   
+}
+
+.li-msg.start {
+    justify-content: flex-start;
+}
+
+.li-msg.end {
+    justify-content: flex-end;
+}
+
+.msg-container {
+    color: black;
+    padding: 5px;
+    width: 85%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+.msg-container.first {
+    background: lightblue;
+}
+
+.msg-container.second {
+    background: lightgreen;
+}

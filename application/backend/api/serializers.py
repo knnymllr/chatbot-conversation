@@ -7,6 +7,7 @@ class PersonaSerializer(serializers.ModelSerializer):
         model = Persona
         fields = '__all__'
 
+
 class PatternSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pattern
@@ -14,6 +15,8 @@ class PatternSerializer(serializers.ModelSerializer):
 
 
 class ConversationSerializer(serializers.ModelSerializer):
+    contributors = serializers.PrimaryKeyRelatedField(many=True, queryset=Persona.objects.all())
+
     class Meta:
         model = Conversation
         fields = '__all__'

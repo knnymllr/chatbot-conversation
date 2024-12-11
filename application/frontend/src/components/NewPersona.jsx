@@ -24,8 +24,8 @@ export default function NewPersona() {
 
   const handleSubmit = async () => {
     try {
-      const response = axios.post(`${HOST_PATH}/personas/`, newPersonaFormData);
-      setUserPersonas([newPersonaFormData, ...userPersonas]);
+      const response = await axios.post(`${HOST_PATH}/personas/`, newPersonaFormData);
+      setUserPersonas([...userPersonas, response.data]);
     } catch (error) {
       console.error(error);
     } finally {

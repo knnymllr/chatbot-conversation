@@ -5,6 +5,63 @@ from django.contrib.auth.models import User
 from rest_framework import generics, status, viewsets
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+import time
+import openai
+
+openai_api_key = ""
+openai.api_key = openai_api_key
+
+# PREV_RESPONSE = ""
+# SYSTEM_PROMPT_SENT = False
+
+#! ¢¢ FOR CHEAP TESTING ¢¢
+
+
+def ask_davinci(message):
+    response = openai.completions.create(
+        model='davinci-002',
+        prompt=message,
+        temperature=1,
+        max_tokens=128,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+    )
+    answer = response.choices[0].text.strip()
+    return answer
+
+
+# * $$ FOR PRODUCTION $$
+def ask_chatgpt(message, prompt):
+    response = openai.chat.completions.create(
+        model='gpt-4',
+        messages=[
+            {'role': 'system', 'content': prompt},
+            {'role': 'user', 'content': message},
+        ],
+        temperature=1,
+        max_tokens=64,
+        top_p=1,
+        frequency_penalty=0,
+        presence_penalty=0,
+    )
+
+    answer = response.choices[0].message.content
+    return answer
+
+
+class ActiveConversationView(generics.GenericAPIView):
+    def post(self, request):
+        prompt = request.data.get('prompt')
+        topic = request.data.get('topic')
+        
+        # message = ask_davinci(topic)
+        message = ask_chatgpt(topic, prompt)
+        return Response(
+            {
+                'message': message
+            },
+            status=status.HTTP_200_OK)
 
 
 class LoginView(generics.GenericAPIView):
@@ -44,7 +101,7 @@ class LoginView(generics.GenericAPIView):
 
 class PersonaViewSet(viewsets.ModelViewSet):
     queryset = Persona.objects
-    serializer_class = PersonaSerializer      
+    serializer_class = PersonaSerializer
 
     def get_queryset(self):
         queryset = self.queryset
@@ -69,7 +126,7 @@ class PatternViewSet(viewsets.ModelViewSet):
         num = params.get('num_participants')
         if name:
             queryset = queryset.filter(name__contains=name)
-        elif num: 
+        elif num:
             queryset = queryset.filter(num_participants__lte=num)
 
         return queryset
@@ -91,7 +148,7 @@ class ConversationViewSet(viewsets.ModelViewSet):
 
 
 class MessageViewSet(viewsets.ModelViewSet):
-    queryset = Message.objects.all()
+    queryset = Message.objects
     serializer_class = MessageSerializer
 
     def get_queryset(self):

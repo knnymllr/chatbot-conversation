@@ -11,6 +11,7 @@ router.register(r'conversations', ConversationViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('active-conversation/', ActiveConversationView.as_view()),
     path('login/', LoginView.as_view()),
     path('token/', TokenObtainPairView.as_view()),
     path('token/refresh/', TokenRefreshView.as_view()),

@@ -35,7 +35,8 @@
 }
 
 .side-panel-section ul {
-    max-height: 250px;
+    height: 225px;
+    max-height: 225px;
     overflow-y: auto;
 }
 
@@ -62,6 +63,9 @@
     place-items: center;
     grid-column-start: 10;
     grid-column-end: -1;
+    height: calc(100% - 25px);
+    max-height: calc(100% - 25px);
+    overflow: hidden;
 }
 
 .main-display.open {

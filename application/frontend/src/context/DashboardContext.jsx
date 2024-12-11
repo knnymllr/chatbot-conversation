@@ -13,6 +13,7 @@ export const DashboardProvider = ({ children }) => {
     persona1: "",
     persona2: "",
     pattern: "",
+    name: "",
     topic: "",
   });
   const [newPersonaFormData, setNewPersonaFormData] = useState({

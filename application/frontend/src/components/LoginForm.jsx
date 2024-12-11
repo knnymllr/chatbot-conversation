@@ -20,7 +20,7 @@ export default function LoginForm() {
     try {
       login(formData);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

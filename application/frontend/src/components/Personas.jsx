@@ -10,6 +10,12 @@ export default function Personas() {
     setIsNewPersonaSelected,
   } = useContext(DashboardContext);
 
+  const handlePersona = () => {
+    setIsConversationSelected(false);
+    setIsNewPersonaSelected(false);
+    setIsPersonaSelected(true)
+  }
+
   const handleNewPersona = () => {
     setIsPersonaSelected(false);
     setIsConversationSelected(false);
@@ -23,7 +29,10 @@ export default function Personas() {
         {userPersonas
           ? userPersonas.map((persona, index) => (
               <li key={index} className={index % 2 == 0 ? "light" : "dark"}>
-                <div className="personas-container">
+                <div
+                  className="personas-container"
+                  onClick={handlePersona}
+                >
                   <h3>{persona.name}</h3>
                   <p className="ellipsis-overflow">{persona.prompt}</p>
                 </div>
